@@ -1,0 +1,48 @@
+void main() {
+// Create a sample linked list
+LinkedList linkedList = LinkedList();
+linkedList.addNode(1);
+linkedList.addNode(2);
+linkedList.addNode(3);
+linkedList.addNode(4);
+linkedList.addNode(5);
+
+// Find and print the middle node of the linked list
+Node? middleNode = findMiddleNode(linkedList.head);
+print('Middle Node: ${middleNode?.data}');
+}
+
+class Node {
+int data;
+Node? next;
+
+Node( this.data) ;
+}
+
+class LinkedList {
+Node? head;
+
+void addNode(int data) {
+Node newNode = Node(data);
+newNode.next = head;
+head = newNode;
+}
+}
+
+Node? findMiddleNode(Node? head) {
+if (head == null) {
+return null;
+}
+
+Node? slowPointer = head;
+Node? fastPointer = head;
+
+// Move the slow pointer one step at a time and the fast pointer two steps at a time
+while (fastPointer != null && fastPointer.next != null) {
+slowPointer = slowPointer!.next;
+fastPointer = fastPointer.next!.next;
+}
+
+// The slow pointer is at the middle node
+return slowPointer;
+}
