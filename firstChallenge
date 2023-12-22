@@ -1,0 +1,43 @@
+void main() {
+List<int> originalList = [1, 2, 3, 4, 5];
+List<int> reversedList = reverseListUsingStack(originalList);
+
+print('Original List: $originalList');
+print('Reversed List: $reversedList');
+}
+
+List<int> reverseListUsingStack(List<int> inputList) {
+List<int> reversedList = [];
+Stack<int> stack = Stack();
+
+// Push elements onto the stack
+for (int element in inputList) {
+stack.push(element);
+}
+
+// Pop elements from the stack to reverse the list
+while (!stack.isEmpty()) {
+reversedList.add(stack.pop());
+}
+
+return reversedList;
+}
+
+class Stack<T> {
+List<T> _items = [];
+
+void push(T item) {
+_items.add(item);
+}
+
+T pop() {
+if (isEmpty()) {
+throw StateError('Cannot pop from an empty stack');
+}
+return _items.removeLast();
+}
+
+bool isEmpty() {
+return _items.isEmpty;
+}
+}
