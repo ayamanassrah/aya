@@ -1,0 +1,60 @@
+void main() {
+// Create a sample linked list
+LinkedList linkedList = LinkedList();
+linkedList.addNode(1);
+linkedList.addNode(2);
+linkedList.addNode(3);
+linkedList.addNode(4);
+linkedList.addNode(5);
+
+// Print the original linked list
+print('Original Linked List:');
+linkedList.printList();
+
+// Reverse the linked list
+linkedList.reverse();
+
+// Print the reversed linked list
+print('Reversed Linked List:');
+linkedList.printList();
+}
+
+class Node {
+int data;
+Node? next;
+
+Node(this.data) ;
+}
+
+class LinkedList {
+Node? head;
+
+void addNode(int data) {
+Node newNode = Node(data);
+newNode.next = head;
+head = newNode;
+}
+
+void reverse() {
+Node? current = head;
+Node? prev = null;
+Node? nextNode;
+
+while (current != null) {
+nextNode = current.next;
+current.next = prev;
+prev = current;
+current = nextNode;
+}
+
+head = prev;
+}
+
+void printList() {
+Node? temp = head;
+while (temp != null) {
+print(temp.data);
+temp = temp.next;
+}
+}
+}
